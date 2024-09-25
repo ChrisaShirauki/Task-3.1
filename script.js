@@ -16,8 +16,13 @@ function searchMap(){
    })
    .then(response=> {
     if(!response.ok){
-        document.getElementById("result").innerHTML = 'HTTP REQUEST FAILED' ;
-        throw new Error ('HTTP request failed! status: ${response.status}`');  //Validation if the request search was successful
+        if (response.status === 404) {
+            throw new Error('404: Not Found');
+        } else if (response.status === 500) {
+            throw new Error('500: Internal Server Error');
+        } else {
+            throw new Error(`Error: ${response.status}`);
+        }
     }
     return response.json()}) //Return the json response
    .then(data =>{                                                          //Pass json data into the modal
@@ -25,6 +30,7 @@ function searchMap(){
    })
    .catch(error=>{
      console.error ('ERROR', error); // In case any error may happen
+     document.getElementById("result").innerHTML = error.message;
    })
 
    //open modal
