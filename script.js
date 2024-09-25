@@ -4,7 +4,7 @@
 //Creating function that uses Nominatim Search API : 
 
 function searchMap(){
-
+   
    var userLocation = document.getElementById("tag").value;
    const apiSearch = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(userLocation)}`; // After the query (?) we want the format in Json and q value equals to user location
 
@@ -16,13 +16,23 @@ function searchMap(){
    })
    .then(response=> {
     if(!response.ok){
+        document.getElementById("result").innerHTML = 'HTTP REQUEST FAILED' ;
         throw new Error ('HTTP request failed! status: ${response.status}`');  //Validation if the request search was successful
     }
     return response.json()}) //Return the json response
    .then(data =>{                                                          //Pass json data into the modal
-      document.getElementById("result").innerHTML = JSON.stringify (data);
+      document.getElementById("result").innerHTML = JSON.stringify (data, null, 4);  //Make the Json format more readable
    })
    .catch(error=>{
      console.error ('ERROR', error); // In case any error may happen
    })
+
+   //open modal
+   document.querySelector('.message').style.display='flex'
+   
 }
+
+ //close modal 
+ function closeModal(){
+  document.querySelector('.message').style.display='none';
+ }

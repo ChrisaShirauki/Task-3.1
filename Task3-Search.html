@@ -14,19 +14,17 @@
   </div>
   <div class="container">
     <div class="wrapper">
-        <form action="#">
             <label> What location do you want to search?</label>
             <input id="tag" type="text">
-            <button type="button" class="btn btn-info">Search </button>
-        </form>
+            <button id="open" type="button" class="btn btn-info" onclick="searchMap()">Search </button>
     </div>
   </div>
 
   <!-- Creation of a pop up message-->
     <div class="message">
        <h2>Your search in JSON is: </h2>
-      <i class='bx bxs-x-circle'></i>
-       <p id="result"></p>
+       <p id="result"><br></p>
+       <button type="button" id="close" class="btn btn-warning" onclick="closeModal()">Close</button>  <!--bootstrap asset-->
     </div>
     </body>
   </html>
