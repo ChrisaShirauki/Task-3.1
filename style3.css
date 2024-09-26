@@ -54,8 +54,9 @@ body{
 }
 
 .message{
-    width: 1000px;
-    height: 700px;
+    display: flex;
+    max-width: 600px;
+    max-height: 600px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -65,7 +66,7 @@ body{
     border: 1px solid rgba(225, 255, 255, 0.16);
     z-index: 999;
     border-radius: 10px;
-    display: none;
+    display: none; 
     white-space: pre-wrap; 
 }
 
@@ -91,4 +92,15 @@ body{
     color: #997206;
 }
 
+@media (max-width: 768px) {
+    .container {
+        margin: 0 10px 25px;
+    }
+}
 
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        font-size: 20px;
+    }
+}
